@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HandMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Basvuru">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="UyrukID" Type="Int32" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Sehir" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="EgitimDurumu" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EgitimBasTarih" Type="DateTime" Precision="0" />
+    <Property Name="EgitimBitTarih" Type="DateTime" Precision="0" />
+    <Property Name="DevamDurumu" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LiseAdi" Type="Int32" />
+    <Property Name="UniversiteAdi" Type="Int32" />
+    <Property Name="OzGecmisDosyaAd" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="BasvuruSonucu" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Lise" Relationship="Self.FK_Basvuru_Lise" FromRole="Basvuru" ToRole="Lise" />
+    <NavigationProperty Name="Sehir1" Relationship="Self.FK_Basvuru_Sehir" FromRole="Basvuru" ToRole="Sehir" />
+    <NavigationProperty Name="Ulke" Relationship="Self.FK_Basvuru_Ulke" FromRole="Basvuru" ToRole="Ulke" />
+    <NavigationProperty Name="Universite" Relationship="Self.FK_Basvuru_Universite" FromRole="Basvuru" ToRole="Universite" />
+  </EntityType>
+  <EntityType Name="Lise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LiseAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Basvuru" Relationship="Self.FK_Basvuru_Lise" FromRole="Lise" ToRole="Basvuru" />
+  </EntityType>
+  <EntityType Name="Sehir">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SehirAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UlkeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Basvuru" Relationship="Self.FK_Basvuru_Sehir" FromRole="Sehir" ToRole="Basvuru" />
+    <NavigationProperty Name="Ulke" Relationship="Self.FK_Sehir_Ulke" FromRole="Sehir" ToRole="Ulke" />
+  </EntityType>
+  <EntityType Name="Ulke">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UlkeAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Basvuru" Relationship="Self.FK_Basvuru_Ulke" FromRole="Ulke" ToRole="Basvuru" />
+    <NavigationProperty Name="Sehir" Relationship="Self.FK_Sehir_Ulke" FromRole="Ulke" ToRole="Sehir" />
+  </EntityType>
+  <EntityType Name="Universite">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UniversiteAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Basvuru" Relationship="Self.FK_Basvuru_Universite" FromRole="Universite" ToRole="Basvuru" />
+  </EntityType>
+  <Association Name="FK_Basvuru_Lise">
+    <End Role="Lise" Type="Self.Lise" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lise">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="LiseAdi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Sehir">
+    <End Role="Sehir" Type="Self.Sehir" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehir">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="Sehir" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Ulke">
+    <End Role="Ulke" Type="Self.Ulke" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Universite">
+    <End Role="Universite" Type="Self.Universite" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universite">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="UniversiteAdi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sehir_Ulke">
+    <End Role="Ulke" Type="Self.Ulke" Multiplicity="1" />
+    <End Role="Sehir" Type="Self.Sehir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sehir">
+        <PropertyRef Name="UlkeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HandMDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Basvuru" EntityType="Self.Basvuru" />
+    <EntitySet Name="Lise" EntityType="Self.Lise" />
+    <EntitySet Name="Sehir" EntityType="Self.Sehir" />
+    <EntitySet Name="Ulke" EntityType="Self.Ulke" />
+    <EntitySet Name="Universite" EntityType="Self.Universite" />
+    <AssociationSet Name="FK_Basvuru_Lise" Association="Self.FK_Basvuru_Lise">
+      <End Role="Lise" EntitySet="Lise" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Sehir" Association="Self.FK_Basvuru_Sehir">
+      <End Role="Sehir" EntitySet="Sehir" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Ulke" Association="Self.FK_Basvuru_Ulke">
+      <End Role="Ulke" EntitySet="Ulke" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Universite" Association="Self.FK_Basvuru_Universite">
+      <End Role="Universite" EntitySet="Universite" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sehir_Ulke" Association="Self.FK_Sehir_Ulke">
+      <End Role="Ulke" EntitySet="Ulke" />
+      <End Role="Sehir" EntitySet="Sehir" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

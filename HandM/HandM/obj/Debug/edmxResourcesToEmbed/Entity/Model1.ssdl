@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HandMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Basvuru">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="varchar" MaxLength="100" />
+    <Property Name="Cinsiyet" Type="varchar" MaxLength="1" />
+    <Property Name="UyrukID" Type="int" />
+    <Property Name="DogumTarihi" Type="date" />
+    <Property Name="Sehir" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Telefon" Type="varchar" MaxLength="100" />
+    <Property Name="Aciklama" Type="varchar" MaxLength="1000" />
+    <Property Name="EgitimDurumu" Type="varchar" MaxLength="1" />
+    <Property Name="EgitimBasTarih" Type="date" />
+    <Property Name="EgitimBitTarih" Type="date" />
+    <Property Name="DevamDurumu" Type="varchar" MaxLength="1" />
+    <Property Name="LiseAdi" Type="int" />
+    <Property Name="UniversiteAdi" Type="int" />
+    <Property Name="OzGecmisDosyaAd" Type="varchar" MaxLength="1000" />
+    <Property Name="BasvuruSonucu" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Lise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LiseAdi" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sehir">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SehirAdi" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UlkeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ulke">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UlkeAdi" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Universite">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UniversiteAdi" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Basvuru_Lise">
+    <End Role="Lise" Type="Self.Lise" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lise">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="LiseAdi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Sehir">
+    <End Role="Sehir" Type="Self.Sehir" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehir">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="Sehir" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Ulke">
+    <End Role="Ulke" Type="Self.Ulke" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Universite">
+    <End Role="Universite" Type="Self.Universite" Multiplicity="0..1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universite">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="UniversiteAdi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sehir_Ulke">
+    <End Role="Ulke" Type="Self.Ulke" Multiplicity="1" />
+    <End Role="Sehir" Type="Self.Sehir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ulke">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sehir">
+        <PropertyRef Name="UlkeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HandMDBModelStoreContainer">
+    <EntitySet Name="Basvuru" EntityType="Self.Basvuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lise" EntityType="Self.Lise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sehir" EntityType="Self.Sehir" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ulke" EntityType="Self.Ulke" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Universite" EntityType="Self.Universite" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Basvuru_Lise" Association="Self.FK_Basvuru_Lise">
+      <End Role="Lise" EntitySet="Lise" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Sehir" Association="Self.FK_Basvuru_Sehir">
+      <End Role="Sehir" EntitySet="Sehir" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Ulke" Association="Self.FK_Basvuru_Ulke">
+      <End Role="Ulke" EntitySet="Ulke" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Universite" Association="Self.FK_Basvuru_Universite">
+      <End Role="Universite" EntitySet="Universite" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sehir_Ulke" Association="Self.FK_Sehir_Ulke">
+      <End Role="Ulke" EntitySet="Ulke" />
+      <End Role="Sehir" EntitySet="Sehir" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

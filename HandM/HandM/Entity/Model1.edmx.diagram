@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a86638f78f94c6893f3ca569af6c067" Name="Diagram1">
+        <EntityTypeShape EntityType="HandMDBModel.Basvuru" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HandMDBModel.Lise" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HandMDBModel.Sehir" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HandMDBModel.Ulke" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HandMDBModel.Universite" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="HandMDBModel.FK_Basvuru_Lise" ManuallyRouted="false" />
+        <AssociationConnector Association="HandMDBModel.FK_Basvuru_Sehir" ManuallyRouted="false" />
+        <AssociationConnector Association="HandMDBModel.FK_Basvuru_Ulke" ManuallyRouted="false" />
+        <AssociationConnector Association="HandMDBModel.FK_Basvuru_Universite" ManuallyRouted="false" />
+        <AssociationConnector Association="HandMDBModel.FK_Sehir_Ulke" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

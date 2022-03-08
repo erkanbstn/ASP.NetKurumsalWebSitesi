@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HandMDBModelStoreContainer" CdmEntityContainer="HandMDBEntities">
+    <EntitySetMapping Name="Basvuru">
+      <EntityTypeMapping TypeName="HandMDBModel.Basvuru">
+        <MappingFragment StoreEntitySet="Basvuru">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="UyrukID" ColumnName="UyrukID" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="EgitimDurumu" ColumnName="EgitimDurumu" />
+          <ScalarProperty Name="EgitimBasTarih" ColumnName="EgitimBasTarih" />
+          <ScalarProperty Name="EgitimBitTarih" ColumnName="EgitimBitTarih" />
+          <ScalarProperty Name="DevamDurumu" ColumnName="DevamDurumu" />
+          <ScalarProperty Name="LiseAdi" ColumnName="LiseAdi" />
+          <ScalarProperty Name="UniversiteAdi" ColumnName="UniversiteAdi" />
+          <ScalarProperty Name="OzGecmisDosyaAd" ColumnName="OzGecmisDosyaAd" />
+          <ScalarProperty Name="BasvuruSonucu" ColumnName="BasvuruSonucu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lise">
+      <EntityTypeMapping TypeName="HandMDBModel.Lise">
+        <MappingFragment StoreEntitySet="Lise">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LiseAdi" ColumnName="LiseAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sehir">
+      <EntityTypeMapping TypeName="HandMDBModel.Sehir">
+        <MappingFragment StoreEntitySet="Sehir">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SehirAdi" ColumnName="SehirAdi" />
+          <ScalarProperty Name="UlkeID" ColumnName="UlkeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ulke">
+      <EntityTypeMapping TypeName="HandMDBModel.Ulke">
+        <MappingFragment StoreEntitySet="Ulke">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UlkeAdi" ColumnName="UlkeAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Universite">
+      <EntityTypeMapping TypeName="HandMDBModel.Universite">
+        <MappingFragment StoreEntitySet="Universite">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UniversiteAdi" ColumnName="UniversiteAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
